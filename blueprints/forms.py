@@ -2,11 +2,12 @@ import wtforms
 from wtforms.validators import length, email, EqualTo, ValidationError
 from models import EmailCaptchaModel, UserModel
 
+
 class RegisterForm(wtforms.Form):
-    username = wtforms.StringField(validators=[length(min=3,max=20)])
+    username = wtforms.StringField(validators=[length(min=3, max=20)])
     email = wtforms.StringField(validators=[email()])
-    captcha = wtforms.StringField(validators=[length(min=4,max=4)])
-    password = wtforms.StringField(validators=[length(min=6,max=20)])
+    captcha = wtforms.StringField(validators=[length(min=4, max=4)])
+    password = wtforms.StringField(validators=[length(min=6, max=20)])
     password_confirm = wtforms.StringField(validators=[EqualTo("password")])
 
     # 验证 验证码是否正确
@@ -27,4 +28,9 @@ class RegisterForm(wtforms.Form):
 
 class LoginForm(wtforms.Form):
     email = wtforms.StringField(validators=[email()])
-    password = wtforms.StringField(validators=[length(min=6,max=20)])
+    password = wtforms.StringField(validators=[length(min=6, max=20)])
+
+
+class QuestionForm(wtforms.Form):
+    title = wtforms.StringField(validators=[length(min=3, max=200)])
+    content = wtforms.StringField(validators=[length(min=5)])
